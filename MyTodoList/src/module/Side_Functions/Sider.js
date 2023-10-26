@@ -36,9 +36,7 @@ const Sider = () => {
                 setData(newData);
                 setList(newData);
                 setLoading(false);
-                // Resetting window's offsetTop so as to display react-virtualized demo underfloor.
-                // In real scene, you can using public method of react-virtualized:
-                // https://stackoverflow.com/questions/46700726/how-to-use-public-method-updateposition-of-react-virtualized
+
                 window.dispatchEvent(new Event('resize'));
             });
     };
@@ -69,7 +67,7 @@ const Sider = () => {
                 >
                     <Skeleton avatar title={false} loading={item.loading} active>
                         <List.Item.Meta
-                            avatar={<Avatar className='head' shape="square" lineWidth='22' src={item.picture.large} />}
+                            avatar={<Avatar className='head' shape="square"  src={item.picture.large} />}
                             title={<a href="https://ant.design">{item.name?.last}</a>}
                             description="Ant Design, a design language for background applications, is refined by Ant UED Team"
                         />

@@ -30,6 +30,7 @@ color: dimgray;
     /*margin-bottom: 35px;*/
 }
 .addButton{
+    font-size: 100%;
     bottom: 26px;
 }
 .sider-sign{
@@ -43,4 +44,29 @@ color: dimgray;
 .loadbutton{
     left: 42px;
 }
+.login{
+    position: fixed;
+    right: 100px;
+    top: 20px;
+}
+.login_icon{
+    font-size: 250%;
 
+}
+.login_title{
+    right: 42px;
+
+}
+.or{
+
+    text-align: center;
+    font-size: 15px;
+    bottom: 30px;
+
+}
+.login_text{
+    font-weight: bold;
+ }
+.signup_text{
+    font-weight: bold;
+}

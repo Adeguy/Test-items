@@ -1,7 +1,6 @@
 import React from 'react';
 import { Calendar, Modal, DatePicker, Select, Input, Button, Badge, Space } from 'antd';
-import {CloseOutlined, PlusCircleOutlined} from '@ant-design/icons';
-
+import {CloseOutlined,PlusSquareOutlined} from '@ant-design/icons';
 const { Option } = Select;
 
 class Calendar_Tasks extends React.Component {
@@ -104,6 +103,9 @@ class Calendar_Tasks extends React.Component {
     };
     //新功能：点击日历即可进行添加的填选
     handleDateSelect = (date) => {
+
+        const { events } = this.state;
+        console.log(events)
         this.setState({
             selectedDatePicker: date,
         });
@@ -119,17 +121,16 @@ class Calendar_Tasks extends React.Component {
                 <div style={{ position: 'absolute', top: '58px', right: '306px' }}>
                     <Button
                         className="addButton"
-                        type="primary" shape="round"
-                        size='100px'
+                        type="primary"
+                        size='200px'
                         onClick={this.showModalHandler}
-                        tooltip="添加事件"
-
                     >
-                        <PlusCircleOutlined />
+                        <PlusSquareOutlined />
+                        添加事件
                     </Button>
                     <Modal
                         title="添加代办事项"
-                        visible={showModal}
+                        open={showModal}
                         onCancel={this.handleModalCancel}
                         onOk={this.handleModalFinish}
                     >
@@ -156,8 +157,10 @@ class Calendar_Tasks extends React.Component {
                             style={{ marginBottom: '10px', width: '100%' }}
                         />
                     </Modal>
+
                 </div>
                 <Calendar onSelect={this.handleDateSelect} dateCellRender={this.dateCellRender} />
+
             </div>
         );
     }
