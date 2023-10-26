@@ -1,0 +1,146 @@
+import React from 'react';
+import { Calendar, Modal, DatePicker, Select, Input, Button, Badge, Space, FloatButton} from 'antd';
+import { CloseOutlined } from '@ant-design/icons';
+
+const { Option } = Select;
+
+class Calendar_Tasks extends React.Component {
+    state = {
+        showModal: false, // 表示模态框是否可见
+        selectedDate: null, // 存储从日期选择器中选择的日期
+        priority: '', // 存储选择的优先级
+        todoText: '', // 存储输入的待办事项文本
+        selectedData_Picker: null,
+        events: {}, // 存储事件与其对应的日期
+    };
+
+    // 显示模态框的处理函数
+    showModalHandler = () => {
+        this.setState({ showModal: true });
+    };
+
+    // 处理模态框取消按钮的函数
+    handleModalCancel = () => {
+
+        this.setState({
+            showModal: false,
+            selectedDate: '',
+            selectedDate_Picker: '',
+            priority: '',
+            todoText: '',
+        });
+    };
+
+    // 处理模态框确认按钮的函数
+    handleModalFinish = () => {
+        //调用数据
+        const { selectedDate, priority, todoText, events } = this.state;
+
+        // 验证是否填写了所有必填字段
+
+
+        const date = selectedDate.format('YYYY-MM-DD');
+        const updatedEvents = { ...events };
+        updatedEvents[date] = updatedEvents[date] || [];
+        const newEvent = {
+            id: Date.now(),
+            date,
+            content: todoText,
+            priority,
+        };
+
+        updatedEvents[date].push(newEvent);
+
+        this.setState({
+            events: updatedEvents,
+            showModal: false,
+            selectedDate: '',
+            priority: '',
+            todoText: '',
+        });
+    };
+
+    // 删除事件的处理函数
+    handleDelete = (date, id) => {
+        const { events } = this.state;
+        const updatedEvents = { ...events };
+        const index = updatedEvents[date].findIndex((event) => event.id === id);
+        updatedEvents[date].splice(index, 1);
+        this.setState({ events: updatedEvents });
+    };
+
+    // 渲染特定日期的事件
+    dateCellRender = (value) => {
+        const { events } = this.state;
+        const date = value.format('YYYY-MM-DD');
+        const content = events[date] || [];
+
+        return (
+            <ul className="events">
+                {content.map((event) => (
+                    <span key={event.id}>
+                        <link rel="stylesheet" type="text/css" href="mytodolist.css" />
+                        <Space.Compact className="text">
+                            <Badge status={event.priority} /> {event.content}
+                        </Space.Compact>
+                        &nbsp;
+                        <Button type="link" className="delete" onClick={() => this.handleDelete(date, event.id)}>
+                            <CloseOutlined />
+                        </Button>
+                        <br />
+                    </span>
+                ))}
+            </ul>
+        );
+    };
+    handleDateSelect=(date, info) =>{
+        const {selectedDate_Picker } = this.state;
+        this.setState({
+        selectedDate_Picker:date
+        });
+
+    }
+    render() {
+        const { showModal, selectedDate, priority, todoText,selectedDate_Picker } = this.state;
+
+        return (
+            <div>
+
+                <div style={{ position: 'absolute', top: '58px', right: '306px' }}>
+                    <FloatButton className={"FloatButton"} type="primary" onClick={this.showModalHandler} tooltip={<div>添加事件</div>} />
+                    {console.log(selectedDate_Picker)}
+
+                    { console.log(selectedDate)}
+                    <Modal title="添加事件" visible={showModal} onCancel={this.handleModalCancel} onOk={this.handleModalFinish}>
+
+                        <DatePicker
+                            defaultValue={selectedDate_Picker}
+                            Value={selectedDate}
+                            onChange={(date) => this.setState({ selectedDate: date })}
+                            style={{ marginBottom: '10px', width: '100%' }}
+                        />
+                        <Select
+                            placeholder="选择优先级"
+                            value={priority}
+                            onChange={(value) =>this.setState({ priority: value })}
+                            style={{ marginBottom: '10px', width: '100%' }}
+                        >
+                            <Option value="error">高</Option>
+                            <Option value="warning">中</Option>
+                            <Option value="success">低</Option>
+                        </Select>
+                        <Input
+                            value={todoText}
+                            onChange={(e) => this.setState({ todoText: e.target.value })}
+                            placeholder="输入待办事项"
+                            style={{ marginBottom: '10px', width: '100%' }}
+                        />
+                    </Modal>
+                </div>
+                <Calendar  onSelect={this.handleDateSelect} dateCellRender={this.dateCellRender} />
+            </div>
+        );
+    }
+}
+
+export default Calendar_Tasks ;
