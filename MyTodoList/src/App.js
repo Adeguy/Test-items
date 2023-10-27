@@ -1,12 +1,13 @@
 
-import Compositic from "./Page_composition";
 import React from "react";
-import { BrowserRouter as Router, Route,Switch } from 'react-router-dom';
+
+import { NavLink} from 'react-router-dom';
+import {RouterProvider} from "react-router-dom";
+import  router from './router'
 function App() {
     return (
-
     <div >
-        <Compositic></Compositic>
+      <RouterProvider router={router}/>
     </div>
 );
 }

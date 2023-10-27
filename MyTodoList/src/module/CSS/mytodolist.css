@@ -70,3 +70,19 @@ color: dimgray;
 .signup_text{
     font-weight: bold;
 }
+.username{
+    left: 65px;
+    top:3px;
+    position: fixed;
+    font-size:16px;
+    font-weight: bold;
+    color: #2b2d30;
+}
+.head1{
+    font-size: 100%;
+    left: 20px;
+    top: 0;
+    position: fixed;
+
+
+}
