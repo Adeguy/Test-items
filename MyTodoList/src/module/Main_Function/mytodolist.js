@@ -83,7 +83,7 @@ class Calendar_Tasks extends React.Component {
                 {content.map((event) => (
                     <span key={event.id}>
                         {/* 使用Badge组件显示事件的优先级和内容 */}
-            <link rel="stylesheet" type="text/css" href="../CSS/mytodolist.css" />
+            <link rel="stylesheet" type="text/css" href="../CSS/style.css" />
             <Space.Compact className="text">
               <Badge status={event.priority} /> {event.content}
             </Space.Compact>
@@ -118,7 +118,7 @@ class Calendar_Tasks extends React.Component {
         return (
             <div>
                 {/*按钮位置*/}
-                <div style={{ position: 'absolute', top: '58px', right: '306px' }}>
+                <div style={{ position: 'absolute', top: '66px', right: '312px' }}>
                     <Button
                         className="addButton"
                         type="primary"
@@ -126,10 +126,10 @@ class Calendar_Tasks extends React.Component {
                         onClick={this.showModalHandler}
                     >
                         <PlusSquareOutlined />
-                        添加事件
+                        Add a new to-do item
                     </Button>
                     <Modal
-                        title="添加代办事项"
+                        title="Add A New To-do Item"
                         open={showModal}
                         onCancel={this.handleModalCancel}
                         onOk={this.handleModalFinish}

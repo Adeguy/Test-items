@@ -4,7 +4,7 @@ import { LogoutOutlined} from '@ant-design/icons';
 import {  FormOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
 
-import "../CSS/mytodolist.css"
+import "../CSS/style.css"
 
 
 

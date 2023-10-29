@@ -1,0 +1,92 @@
+.events {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+}
+.events .ant-badge-status {
+    width: 100%;
+    overflow: hidden;
+    font-size: 12px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.notes-month {
+    font-size: 28px;
+    text-align: center;
+}
+.notes-month section {
+    font-size: 28px;
+}
+.delete{
+left: 20px;
+    top: 3px;
+color: dimgray;
+    font-size: 100%   ;
+}
+
+.text{
+    margin-top: 5px;
+    /*margin-bottom: 35px;*/
+}
+.addButton{
+    font-size: 100%;
+    bottom: 26px;
+}
+.sider-sign{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.head{
+    left: 10px;
+}
+.loadbutton{
+    left: 42px;
+}
+.login{
+    position: fixed;
+    right: 100px;
+    top: 20px;
+}
+.login_icon{
+    font-size: 250%;
+
+}
+.login_title{
+    right: 42px;
+
+}
+.or{
+
+    text-align: center;
+    font-size: 15px;
+    bottom: 30px;
+
+}
+.login_text{
+    font-weight: bold;
+ }
+.signup_text{
+    font-weight: bold;
+}
+.username{
+    left: 65px;
+    top:3px;
+    position: fixed;
+    font-size:16px;
+    font-weight: bold;
+    color: #2b2d30;
+}
+.head1{
+    font-size: 100%;
+    left: 20px;
+    top: 0;
+    position: fixed;
+
+
+}
+.container{
+    display: flex;
+    height: 100vh;
+}

@@ -1,116 +1,120 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
 import { Modal, Button, Form, Input, Space } from "antd";
 import { ContactsOutlined, LockOutlined, UserOutlined } from "@ant-design/icons";
-import { useNavigate } from "react-router-dom";
 
-const Login = () => {
-    const [visible, setVisible] = useState(true);
-    const [credentials, setCredentials] = useState({
-        username: "",
-        password: "",
-    });
-    const navigate = useNavigate();
 
-    const onFinish = (values) => {
+class Login extends Component {
+    state = {
+        visible: true,
+        credentials: {
+            username: "",
+            password: "",
+        }
+    };
+
+    onFinish = (values) => {
         console.log("Received values of form: ", values);
-        setVisible(false);
-        setCredentials({ username: values.username, password: values.password });
+        this.setState({ visible: false, credentials: { username: values.username, password: values.password } });
     };
 
-    const showModal = () => {
-        setVisible(true);
+    showModal = () => {
+        this.setState({ visible: true });
     };
 
-    const handleCancel = () => {
-        setVisible(false);
+    handleCancel = () => {
+        this.setState({ visible: false });
     };
 
-    return (
-        <div>
-            <>
-                <Button className="login" onClick={showModal} type="dashed" ghost>
-                    Log in
-                </Button>
-                <Modal
-                    centered={true}
-                    keyboard={false}
-                    closeIcon={null}
-                    maskClosable={false}
-                    open={visible}
-                    onCancel={handleCancel}
-                    footer={null}
-                >
-                    <Space className="login_title">
-                        <ContactsOutlined className="login_icon" />
-                        <h1>{"Mytodolist"}</h1>
-                    </Space>
+    render() {
+        const { visible, credentials } = this.state;
 
-                    <Form
-                        name="normal_login"
-                        className="login-form"
-                        initialValues={{
-                            remember: true,
-                        }}
-                        onFinish={onFinish}
+        return (
+            <div>
+                <>
+                    <Button className="login" onClick={this.showModal} type="dashed" ghost>
+                        Log in
+                    </Button>
+                    <Modal
+                        centered={true}
+                        keyboard={false}
+                        closeIcon={null}
+                        maskClosable={false}
+                        open={visible}
+                        onCancel={this.handleCancel}
+                        footer={null}
                     >
-                        <Form.Item
-                            name="username"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: "Please input your Username!",
-                                },
-                            ]}
+                        <Space className="login_title">
+                            <ContactsOutlined className="login_icon" />
+                            <h1>{"Mytodolist"}</h1>
+                        </Space>
+
+                        <Form
+                            name="normal_login"
+                            className="login-form"
+                            initialValues={{
+                                remember: true,
+                            }}
+                            onFinish={this.onFinish}
                         >
-                            <Input
-                                prefix={<UserOutlined className="site-form-item-icon" />}
-                                placeholder="Username"
-                                onChange={(e) =>
-                                    setCredentials({ ...credentials, username: e.target.value })
-                                }
-                            />
-                        </Form.Item>
-                        <Form.Item
-                            name="password"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: "Please input your Password!",
-                                },
-                            ]}
-                        >
-                            <Input
-                                prefix={<LockOutlined className="site-form-item-icon" />}
-                                type="password"
-                                placeholder="Password"
-                                onChange={(e) =>
-                                    setCredentials({ ...credentials, password: e.target.value })
-                                }
-                            />
-                        </Form.Item>
-                        <Form.Item>
-                            <div className="aaa">
-                                <Button
-                                    type="primary"
-                                    htmlType="submit"
-                                    className="login_text"
-                                    block
-                                    onClick={() => navigate(`/mytodolist`, { state: { credentials } })}
-                                >
-                                    Log in
-                                </Button>
-                                <div className="or">or</div>
-                                <Button htmlType="submit" className="signup_text" block>
-                                    Register
-                                </Button>
-                            </div>
-                        </Form.Item>
-                        <Form.Item></Form.Item>
-                    </Form>
-                </Modal>
-            </>
-        </div>
-    );
-};
+                            <Form.Item
+                                name="username"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: "Please input your Username!",
+                                    },
+                                ]}
+                            >
+                                <Input
+                                    prefix={<UserOutlined className="site-form-item-icon" />}
+                                    placeholder="Username"
+                                    onChange={(e) =>
+                                        this.setState({ credentials: { ...credentials, username: e.target.value } })
+                                    }
+                                />
+                            </Form.Item>
+                            <Form.Item
+                                name="password"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: "Please input your Password!",
+                                    },
+                                ]}
+                            >
+                                <Input
+                                    prefix={<LockOutlined className="site-form-item-icon" />}
+                                    type="password"
+                                    placeholder="Password"
+                                    onChange={(e) =>
+                                        this.setState({ credentials: { ...credentials, password: e.target.value } })
+                                    }
+                                />
+                            </Form.Item>
+                            <Form.Item>
+                                <div className="aaa">
+                                    <Button
+                                        type="primary"
+                                        htmlType="submit"
+                                        className="login_text"
+                                        block
+                                        href='/mytodolist'
+                                    >
+                                        Log in
+                                    </Button>
+                                    <div className="or">or</div>
+                                    <Button htmlType="submit" className="signup_text" block>
+                                        Register
+                                    </Button>
+                                </div>
+                            </Form.Item>
+                            <Form.Item></Form.Item>
+                        </Form>
+                    </Modal>
+                </>
+            </div>
+        );
+    }
+}
 
 export default Login;
