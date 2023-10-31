@@ -41,6 +41,10 @@ color: dimgray;
 .head{
     left: 10px;
 }
+.logoutButton{
+    font-size: 100%;
+    bottom: 26px;
+}
 .loadbutton{
     left: 42px;
 }

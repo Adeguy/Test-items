@@ -8,6 +8,12 @@ import './module/CSS/style.css';
 const { Header, Footer, Sider, Content } = Layout;
 
 class PageComposition extends Component {
+    state = {
+        events: '', // 存储事件与其对应的日期
+    };
+    changeEvents = (newEvents) => {
+        this.setState(newEvents);
+    };
     render() {
         const headerStyle = {
             textAlign: 'center',
@@ -23,7 +29,7 @@ class PageComposition extends Component {
             minHeight: 120,
             lineHeight: '120px',
             color: '#fff',
-            backgroundColor: '#108ee9',
+            backgroundColor: '#ffffff',
         };
 
         const siderStyle = {
@@ -50,8 +56,9 @@ class PageComposition extends Component {
                         <Header style={headerStyle}>
                             <Bar />
                         </Header>
-                        <Content style={contentStyle}>
-                            <Calendar_Tasks />
+
+                        <Content style={contentStyle} >
+                            <Calendar_Tasks   />
                         </Content>
                         <Footer style={footerStyle}>Footer</Footer>
                     </Layout>

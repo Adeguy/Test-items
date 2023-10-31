@@ -86,7 +86,9 @@ color: dimgray;
 
 
 }
-.container{
-    display: flex;
-    height: 100vh;
+.logoutButton{
+    font-size: 100%;
+    bottom: 26px;
+    right: 10px;
+
 }
