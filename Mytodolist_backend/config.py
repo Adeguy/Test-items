@@ -1,0 +1,8 @@
+HOSTNAME = '127.0.0.1'
+HOST = '3306'
+USERNAME = 'root'
+PASSWORD = '123456'
+DATABASE = 'mytodolist'
+
+DB_URI = 'mysql+pymysql://{}:{}@{}:{}/{}?charset=utf8mb4'.format(USERNAME,PASSWORD,HOSTNAME,HOST,DATABASE)
+SQLALCHEMY_DATABASE_URI =DB_URI
